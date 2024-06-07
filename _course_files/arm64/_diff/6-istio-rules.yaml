@@ -20,19 +20,26 @@ metadata:
   namespace: default
 spec:
   hosts:      # which incoming host are we applying the proxy rules to???
-    - "*" # Copy the value in the gateway hosts - usually a Domain Name
+    - "*"
   gateways:
     - ingress-gateway-configuration
   http:
-    - route:
-        - destination:
-            host: fleetman-webapp
-            subset: original
-          weight: 90
-        - destination:
-            host: fleetman-webapp
-            subset: experimental
-          weight: 10
+    - match:
+      - uri:  # IF
+          prefix: "/experimental"
+      - uri:  # OR
+          prefix: "/canary"
+      route: # THEN
+      - destination:
+          host: fleetman-webapp
+          subset: experimental
+    - match:
+      - uri :
+          prefix: "/"
+      route:
+      - destination:
+          host: fleetman-webapp
+          subset: original
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3

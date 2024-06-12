@@ -1,7 +1,7 @@
-apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
+apiVersion: networking.istio.io/v1beta1
 metadata:
-  name: fleetman-staff-service
+  name: a-set-of-routing-rules-we-can-call-this-anything
   namespace: default
 spec:
   hosts:
@@ -10,24 +10,24 @@ spec:
   - route:
     - destination:
         host: fleetman-staff-service.default.svc.cluster.local
-        subset: safe
+        subset: safe-group
       weight: 90
     - destination:
         host: fleetman-staff-service.default.svc.cluster.local
-        subset: risky
+        subset: risky-group
       weight: 10
 ---
-apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
+apiVersion: networking.istio.io/v1beta1
 metadata:
-  name: fleetman-staff-service
+  name: grouping-rules-for-our-photograph-canary-release
   namespace: default
 spec:
   host: fleetman-staff-service.default.svc.cluster.local
   subsets:
   - labels:
       version: safe
-    name: safe
+    name: safe-group
   - labels:
       version: risky
-    name: risky
+    name: risky-group

@@ -119,11 +119,12 @@ spec:
   selector:
     matchLabels:
       app: staff-service
-  replicas: 2
+  replicas: 0
   template: # template for the pods
     metadata:
       labels:
         app: staff-service
+        version: safe
     spec:
       containers:
       - name: staff-service
@@ -143,11 +144,12 @@ spec:
   selector:
     matchLabels:
       app: staff-service
-  replicas: 1
+  replicas: 0
   template: # template for the pods
     metadata:
       labels:
         app: staff-service
+        version: risky
     spec:
       containers:
       - name: staff-service

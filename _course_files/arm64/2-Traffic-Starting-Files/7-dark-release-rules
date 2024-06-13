@@ -9,7 +9,7 @@ spec:
   http:
     - match:
         - headers:
-            my-header:
+            x-my-header:
               exact: canary
       route:
         - destination:

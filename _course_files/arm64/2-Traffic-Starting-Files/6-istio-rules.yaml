@@ -1,0 +1,55 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: fleetman-webapp
+  namespace: default
+  uid: a46e1876-0783-4a20-85b8-a1e0661b5a7a
+  resourceVersion: '5215'
+  generation: 1
+  creationTimestamp: '2024-06-13T13:18:39Z'
+  labels:
+    kiali_wizard: weighted_routing
+  managedFields:
+    - manager: Go-http-client
+      operation: Update
+      apiVersion: networking.istio.io/v1alpha3
+      time: '2024-06-13T13:18:39Z'
+spec:
+  hosts:
+    - fleetman-webapp.default.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: fleetman-webapp.default.svc.cluster.local
+            subset: original
+          weight: 90
+        - destination:
+            host: fleetman-webapp.default.svc.cluster.local
+            subset: experimental
+          weight: 10
+---
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: fleetman-webapp
+  namespace: default
+  uid: a52adc86-0f79-4d6f-bb9a-cd5b6856b679
+  resourceVersion: '5216'
+  generation: 1
+  creationTimestamp: '2024-06-13T13:18:39Z'
+  labels:
+    kiali_wizard: weighted_routing
+  managedFields:
+    - manager: Go-http-client
+      operation: Update
+      apiVersion: networking.istio.io/v1alpha3
+      time: '2024-06-13T13:18:39Z'
+spec:
+  host: fleetman-webapp.default.svc.cluster.local
+  subsets:
+    - labels:
+        version: original
+      name: original
+    - labels:
+        version: experimental
+      name: experimental

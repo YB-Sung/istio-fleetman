@@ -3,20 +3,9 @@ apiVersion: networking.istio.io/v1alpha3
 metadata:
   name: fleetman-staff-service
   namespace: default
-  uid: 0041348a-543c-4ed5-b401-07112dd4f6c5
-  resourceVersion: '4008'
-  generation: 1
-  creationTimestamp: '2024-06-13T15:26:52Z'
-  labels:
-    kiali_wizard: matching_routing
-  managedFields:
-    - manager: Go-http-client
-      operation: Update
-      apiVersion: networking.istio.io/v1alpha3
-      time: '2024-06-13T15:26:52Z'
 spec:
   hosts:
-    - fleetman-staff-service.default.svc.cluster.local
+    - fleetman-staff-service
   http:
     - match:
         - headers:
@@ -37,19 +26,8 @@ apiVersion: networking.istio.io/v1alpha3
 metadata:
   name: fleetman-staff-service
   namespace: default
-  uid: 972b32b3-e116-46cf-a856-47bbd5a77658
-  resourceVersion: '4009'
-  generation: 1
-  creationTimestamp: '2024-06-13T15:26:52Z'
-  labels:
-    kiali_wizard: matching_routing
-  managedFields:
-    - manager: Go-http-client
-      operation: Update
-      apiVersion: networking.istio.io/v1alpha3
-      time: '2024-06-13T15:26:52Z'
 spec:
-  host: fleetman-staff-service.default.svc.cluster.local
+  host: fleetman-staff-service
   subsets:
     - labels:
         version: safe

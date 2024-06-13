@@ -25,11 +25,14 @@ spec:
     - ingress-gateway-configuration
   http:
     - match:
+      - headers:  # IF
+          my-header:
+            exact: canary
       route: # THEN
       - destination:
           host: fleetman-webapp
           subset: experimental
-    - route:
+    - route: # CATCH ALL
       - destination:
           host: fleetman-webapp
           subset: original

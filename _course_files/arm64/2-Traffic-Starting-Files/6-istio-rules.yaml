@@ -25,18 +25,11 @@ spec:
     - ingress-gateway-configuration
   http:
     - match:
-      - uri:  # IF
-          prefix: "/experimental"
-      - uri:  # OR
-          prefix: "/canary"
       route: # THEN
       - destination:
           host: fleetman-webapp
           subset: experimental
-    - match:
-      - uri :
-          prefix: "/"
-      route:
+    - route:
       - destination:
           host: fleetman-webapp
           subset: original

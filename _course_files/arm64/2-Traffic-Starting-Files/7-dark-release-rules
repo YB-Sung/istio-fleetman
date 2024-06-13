@@ -13,13 +13,12 @@ spec:
               exact: canary
       route:
         - destination:
-            host: fleetman-staff-service.default.svc.cluster.local
-            subset: safe
-          weight: 0
-        - destination:
-            host: fleetman-staff-service.default.svc.cluster.local
+            host: fleetman-staff-service
             subset: risky
-          weight: 100
+    - route:
+        - destination:
+            host: fleetman-staff-service
+            subset: safe
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3

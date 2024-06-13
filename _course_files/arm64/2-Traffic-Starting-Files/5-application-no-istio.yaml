@@ -80,6 +80,30 @@ spec:
     metadata:
       labels:
         app: webapp
+        version: original
+    spec:
+      containers:
+      - name: webapp
+        image: richardchesterwood/istio-fleetman-webapp-angular:6-arm64
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
+        imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: webapp
+        version: original
     spec:
       containers:
       - name: webapp
@@ -119,7 +143,7 @@ spec:
   selector:
     matchLabels:
       app: staff-service
-  replicas: 1
+  replicas: 0
   template: # template for the pods
     metadata:
       labels:

@@ -3,20 +3,9 @@ apiVersion: networking.istio.io/v1alpha3
 metadata:
   name: fleetman-vehicle-telemetry
   namespace: default
-  uid: 0d2d042d-7c75-4053-8cf6-7353044d2492
-  resourceVersion: '2168'
-  generation: 1
-  creationTimestamp: '2024-06-14T00:11:49Z'
-  labels:
-    kiali_wizard: suspend_traffic
-  managedFields:
-    - manager: Go-http-client
-      operation: Update
-      apiVersion: networking.istio.io/v1alpha3
-      time: '2024-06-14T00:11:49Z'
 spec:
   hosts:
-    - fleetman-vehicle-telemetry.default.svc.cluster.local
+    - fleetman-vehicle-telemetry
   http:
     - fault:
         abort:
@@ -25,24 +14,13 @@ spec:
             value: 100
       route:
         - destination:
-            host: fleetman-vehicle-telemetry.default.svc.cluster.local
+            host: fleetman-vehicle-telemetry
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3
 metadata:
   name: fleetman-vehicle-telemetry
   namespace: default
-  uid: 8b018482-96bc-45f5-8544-9097d4ff9399
-  resourceVersion: '2167'
-  generation: 1
-  creationTimestamp: '2024-06-14T00:11:49Z'
-  labels:
-    kiali_wizard: suspend_traffic
-  managedFields:
-    - manager: Go-http-client
-      operation: Update
-      apiVersion: networking.istio.io/v1alpha3
-      time: '2024-06-14T00:11:49Z'
 spec:
-  host: fleetman-vehicle-telemetry.default.svc.cluster.local
+  host: fleetman-vehicle-telemetry
   subsets: []
